@@ -45,4 +45,13 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:_id", async (req, res) => {
+  try {
+    const product = await Product.findOneAndDelete({ id: req.params.id });
+    res.status(200).send(product);
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+});
+
 module.exports = router;
